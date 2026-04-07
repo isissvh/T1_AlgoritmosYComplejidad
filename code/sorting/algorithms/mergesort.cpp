@@ -5,9 +5,9 @@
 
 using namespace std;
 
-/*
+/* Esta es la versión original, la cual se modificó para mejorar el rendimiento
 void merge(vector<int>& arr, int left, int mid, int right){
-                         
+
     int n1 = mid - left + 1;
     int n2 = right - mid;
 

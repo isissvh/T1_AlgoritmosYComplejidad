@@ -6,6 +6,7 @@ ALGDIR = algorithms
 OBJECTS = sorting.o mergesort.o quicksort.o sort.o
 
 INPUT_DIR = data/array_input
+OUTPUT_DIR = data/array_output
 MEASURE_DIR = data/measurements
 ALGORITHMS = quicksort mergesort sort
 
@@ -28,16 +29,16 @@ sort.o: $(ALGDIR)/sort.cpp
 
 # Ejecutar todos los inputs con todos los algoritmos
 run: $(TARGET)
-	@mkdir -p $(MEASURE_DIR)
+	@mkdir -p $(MEASURE_DIR) $(OUTPUT_DIR)
 	@for alg in $(ALGORITHMS); do \
 		for file in $(INPUT_DIR)/*.txt; do \
-			base=$$(basename $$file .txt); \
-			IFS="_"; set -- $$base; \
-			if [ $$# -ne 4 ]; then \
-				echo "Saltando archivo con formato inválido: $$base"; \
-				continue; \
-			fi; \
-			n=$$1; t=$$2; d=$$3; m=$$4; \
+			base=$$(basename "$$file" .txt); \
+			n=$${base%%_*}; \
+			rest=$${base#*_}; \
+			t=$${rest%%_*}; \
+			rest=$${rest#*_}; \
+			d=$${rest%%_*}; \
+			m=$${rest#*_}; \
 			echo "Ejecutando $$alg con $$base"; \
 			./$(TARGET) $$alg $$n $$t $$d $$m; \
 		done; \
@@ -47,4 +48,8 @@ run: $(TARGET)
 clean:
 	rm -f $(OBJECTS) $(TARGET)
 
-.PHONY: run clean
+reset-results:
+	rm -f $(MEASURE_DIR)/*.csv
+	rm -f $(OUTPUT_DIR)/*.txt
+
+.PHONY: run clean reset-results
