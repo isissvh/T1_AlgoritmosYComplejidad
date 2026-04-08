@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber report"] 1775365758.62003 "report.bcf" "report.bbl" "report" 1775365762.87577 0
-  "report.bcf" 1775365762.77268 107701 8e11a3564a9755c862f81f9053911864 "pdflatex"
+["biber report"] 1775593341.22797 "report.bcf" "report.bbl" "report" 1775594099.04084 0
+  "report.bcf" 1775594098.92657 107701 8e11a3564a9755c862f81f9053911864 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1775365761.26293 "/home/isidora/algoco/T1/report/report.tex" "report.pdf" "report" 1775365762.87625 0
+["pdflatex"] 1775594096.59891 "/home/isidora/algoco/T1/report/report.tex" "report.pdf" "report" 1775594099.04115 0
   "/etc/texmf/web2c/texmf.cnf" 1775344758.29449 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/isidora/algoco/T1/report/report.tex" 1775343458 1062 91aa17fd16c6005eb4908cc926fc00d7 ""
+  "/home/isidora/algoco/T1/report/report.tex" 1775435554 1119 f60b09a3dcae4dd5c68ea0a363dae761 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -294,16 +294,16 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1775344788.06871 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1775344862 8215196 c50bbec65dbca116b766ac364fd9365c ""
-  "author.tex" 1775365757.65264 507 adcdc35d104f5a84039a581a9beb12c2 ""
-  "preamble.tex" 1775343458 2163 4b0cc777241a9fa0f82b663d831cc656 ""
-  "report.aux" 1775365762.76268 850 2840d27885b96b0978070874d6696950 "pdflatex"
-  "report.bbl" 1775365759.49265 466 ee04f40f768daeed26442158e95aba61 "biber report"
-  "report.out" 1775365762.77268 406 9f014d8548a379b0748383f91ce3555e "pdflatex"
-  "report.run.xml" 1775365762.77268 2319 85416a11bf768be6a1e5b1dccfd5e02c "pdflatex"
-  "report.tex" 1775343458 1062 91aa17fd16c6005eb4908cc926fc00d7 ""
-  "sections/conclusions.tex" 1775343458 278 56040fbacf151362f720a9be978c90ce ""
-  "sections/experiment_intro.tex" 1775343458 379 f0add915593aa8b0fb1d02b08f96acf6 ""
-  "sections/experiment_results.tex" 1775343458 1027 ce5cdcc5a24a6ea63b22a6c7ccc0fdbb ""
+  "author.tex" 1775435554 512 94a219d24e4d391dd31cb6f406b3ec97 ""
+  "preamble.tex" 1775435554 2249 30e0c26a668e288d9d4e9e3ea931dfbe ""
+  "report.aux" 1775594098.91591 850 3ce497db58620faaff1bed4e8eca9d3f "pdflatex"
+  "report.bbl" 1775593342.38898 466 ee04f40f768daeed26442158e95aba61 "biber report"
+  "report.out" 1775594098.92657 406 9f014d8548a379b0748383f91ce3555e "pdflatex"
+  "report.run.xml" 1775594098.92657 2319 85416a11bf768be6a1e5b1dccfd5e02c "pdflatex"
+  "report.tex" 1775435554 1119 f60b09a3dcae4dd5c68ea0a363dae761 ""
+  "sections/conclusions.tex" 1775435554 283 990cc1ba336047cd487851283e7446af ""
+  "sections/experiment_intro.tex" 1775593370.66482 918 5e781a3875e095819b110e357e4141e8 ""
+  "sections/experiment_results.tex" 1775594096.45361 2146 fa7097bb3973d4a822480adc371acc44 ""
   (generated)
   "report.aux"
   "report.bcf"
