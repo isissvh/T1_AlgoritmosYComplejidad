@@ -1,19 +1,34 @@
-\begin{mdframed}
-    \textbf{La extensión máxima para esta sección es de 4 páginas.} Si utiliza menos páginas y explica bien sus resultados, es preferible.
-\end{mdframed}
 
-Presente sus resultados mediante \textbf{tablas y gráficos}. Cada tabla o gráfico debe estar referenciado en el texto, con una breve descripción de lo que se observa y por qué es relevante.
+\textbf{Algoritmos de ordenamiento}
 
-\textbf{Es necesario automatizar la generación de las gráficas}, ya que es imprescindible que se pueda confirmar que las visualizaciones presentadas son producto de los datos generados por sus algoritmos.
+Los algoritmos de ordenamiento muestran patrones de rendimiento diferentes a las expectativas teóricas, 
+revelando la complejidad de implementar algoritmos eficientes en entornos reales.
 
-Escoja las gráficas más representativas y que muestren de manera clara los resultados obtenidos. Esta elección es parte de lo que se evaluará en la sección de presentación de resultados.
+\begin{itemize}
+    \item \textbf{Quicksort:} Aunque teóricamente tiene un tiempo de ejecución de $O(n \log n)$ en el mejor y promedio caso, 
+    en la práctica, su rendimiento puede verse afectado por la elección del pivote. En casos donde el pivote no se selecciona 
+    adecuadamente (por ejemplo, si el arreglo ya está ordenado), el tiempo de ejecución puede degradarse a $O(n^2)$. Dado que la 
+    implementación utilizada selecciona un pivote aleatorio pero ciertos casos pueden no ser tan aleatorios, se observa que el 
+    rendimiento de Quicksort puede variar significativamente, especialmente con entradas grandes o patrones reiterativos de datos.
 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{../code/sorting/data/plots/tiempo_quicksort_teorico.png}
+        \caption{Rendimiento de Quicksort comparado a rendimientos teóricos.}
+    \end{figure}
 
+    \item \textbf{Mergesort:} En la ejecución de este algoritmo se dieron resultados consistentes con el tiempo de ejecución 
+    teórico de $O(n \log n)$, independientemente de la naturaleza de los datos de entrada. Esto se debe a que Mergesort siempre 
+    divide el arreglo en partes iguales y combina los resultados de manera eficiente, lo que garantiza un rendimiento estable y 
+    de esa manera se cataloga como el algoritmo más robustos frente a variaciones en las características de los datos.ç
 
-\begin{mdframed}
-    Recuerde que es imprescindible que se pueda replicar la generación de las gráficas, por lo que usted debe referir a las figuras generadas en `code/matrix\_multiplication/data/plots/` y `code/sorting/data/plots/`.
-\end{mdframed}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{../code/sorting/data/plots/tiempo_mergesort_teorico.png}
+        \caption{Rendimiento de Mergesort comparado a rendimientos teóricos.}
+    \end{figure}
 
+\end{itemize}
 
 
 % **Algoritmos de Ordenamiento**

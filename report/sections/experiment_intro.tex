@@ -1,8 +1,44 @@
-\begin{mdframed}
-    \textbf{La extensión máxima para esta sección es de media página.}
-\end{mdframed}
+Los experimentos fueron realizados en una máquina virtual con las siguientes características:
 
-% Especifique el hardware y software utilizado para realizar los experimentos (por ejemplo, procesador, memoria RAM, sistema operativo, compilador y versión). Incluya una mención breve de los datasets utilizados, los cuales son los descritos en el enunciado de la tarea.
+\begin{itemize}
+\item \textbf{Hardware:} (máquina física)
+    \begin{itemize}
+    \item Procesador:
+    \item Memoria Ram:
+    \item GPU: NVIDIA GeForce RTX 3060ti
+    \item Almacenamiento:
+    \end{itemize} 
+
+\item \textbf{Detalles Máquina Virtual:}
+    \begin{itemize}
+    \item Sistema Operativo: Ubuntu 24.04.1 LTS
+    \item Compilador: g++ 13.3.0
+    \item Recursos Asignados a Máquina Virtual:
+    \end{itemize} 
+
+\end{itemize} 
+
+\textbf{Mediciones}
+
+\begin{enumerate}
+    \item \textbf{Tiempo de ejecución:} Se utilizó la biblioteca <chrono> de C++ para medir el tiempo transcurrido en ms durante la ejecución de cada algoritmo individualmente. Esto excluyendo operaciones de entrada/salida y compilación.
+    \item \textbf{Consumo de memoria:} Se empleó getrusage() para medir el consumo máximo residente (RSS) durante la ejecución de cada algoritmo. En el caso particular de los algoritmos de ordenamiento,
+    se midió en dos ejecuciones, inicialmente solo medía el valor máximo RSS alcanzado por el proceso completo, no necesariamente la memoria extra usada por el algoritmo, por lo que 
+se decidió medir el consumo de memoria antes y después de la ejecución del algoritmo, y restar ambos valores para obtener una estimación más precisa del consumo de memoria adicional.
+    \item \textbf{Compilación:} Cada medición se estandarizó con la utilización de makefiles para compilar los algoritmos con las mismas opciones de optimización (-O3) y sin incluir 
+    información de depuración (-g). Esto garantiza que las comparaciones entre algoritmos sean justas y consistentes.
+    \item \textbf{Casos de prueba:} Se utilizaron sólo los datasets generados por los scripts correspondientes a cada sección.
+\end{enumerate}
+
+\textbf{Datasets}
+
+Los datasets utilizados para los experimentos fueron generados utilizando scripts específicos para cada sección. 
+Estos scripts se encargaron de crear conjuntos de datos con dos tipos de dominios: \texttt{D1}: \{0,1\}, \texttt{D7}: 
+\{0,1,2,3,4,5,6,7,8,9\} en donde para algoritmos de ordenamiento la estructura de pruebas son arreglos de tipo \texttt{ascendente}, \texttt{descendente} y 
+\texttt{aleatorio} dentro de los rangos de valores de $10^3$ hasta $10^7$ y para multiplicación de matrices de los tipos \texttt{dispersa}, 
+\texttt{diagonal} y \texttt{densa} dentro de los rangos de valores de $2^2$ hasta $2^{10}$. Estos datasets proporcionaron una 
+base sólida para evaluar el rendimiento de los algoritmos en diferentes escenarios y condiciones, permitiendo así obtener 
+conclusiones más robustas sobre su comportamiento.
 
 % "Ubuntu 24.04.1 LTS" SO
 % g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0 G++ VERSION

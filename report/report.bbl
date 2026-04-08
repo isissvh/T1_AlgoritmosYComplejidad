@@ -16,5 +16,85 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Merge}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e035fc87801e463836c4b83f23ce07c7}{%
+           family={Geeks},
+           familyi={G\bibinitperiod},
+           given={Geeks},
+           giveni={G\bibinitperiod},
+           prefix={for},
+           prefixi={f\bibinitperiod}}}%
+      }
+      \strng{namehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{fullhash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{bibnamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authorbibnamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authornamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authorfullhash}{e035fc87801e463836c4b83f23ce07c7}
+      \field{extraname}{1}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.geeksforgeeks.org/dsa/merge-sort/}}
+      \field{title}{Merge Sort}
+      \field{year}{2025}
+    \endentry
+    \entry{Quick}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e035fc87801e463836c4b83f23ce07c7}{%
+           family={Geeks},
+           familyi={G\bibinitperiod},
+           given={Geeks},
+           giveni={G\bibinitperiod},
+           prefix={for},
+           prefixi={f\bibinitperiod}}}%
+      }
+      \strng{namehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{fullhash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{bibnamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authorbibnamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authornamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authorfullhash}{e035fc87801e463836c4b83f23ce07c7}
+      \field{extraname}{2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.geeksforgeeks.org/cpp/cpp-program-for-quicksort/}}
+      \field{title}{Quick Sort}
+      \field{year}{2025}
+    \endentry
+    \entry{Strassen}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e035fc87801e463836c4b83f23ce07c7}{%
+           family={Geeks},
+           familyi={G\bibinitperiod},
+           given={Geeks},
+           giveni={G\bibinitperiod},
+           prefix={for},
+           prefixi={f\bibinitperiod}}}%
+      }
+      \strng{namehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{fullhash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{bibnamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authorbibnamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authornamehash}{e035fc87801e463836c4b83f23ce07c7}
+      \strng{authorfullhash}{e035fc87801e463836c4b83f23ce07c7}
+      \field{extraname}{3}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.geeksforgeeks.org/dsa/strassens-matrix-multiplication/}}
+      \field{title}{Strassen's Matrix Multiplication}
+      \field{year}{2025}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
