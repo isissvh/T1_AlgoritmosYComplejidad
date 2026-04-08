@@ -1,5 +1,4 @@
 n,t,d,m,time_ms,memory_kb
-100000,aleatorio,D1,a,4.0263,4224
 10000000,aleatorio,D1,a,455.943,81536
 10000000,aleatorio,D1,b,444.455,81536
 10000000,aleatorio,D1,c,431.361,81536

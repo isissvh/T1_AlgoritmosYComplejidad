@@ -2,10 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 import re
+import numpy as np
 
-# -------------------------------------------------------------------
-# RUTAS
-# -------------------------------------------------------------------
+
 SOURCE_DIR = Path(__file__).resolve().parent.parent / "data" / "measurements"
 PLOTS_DIR = Path(__file__).resolve().parent.parent / "data" / "plots"
 
@@ -20,7 +19,6 @@ def extraer_algoritmo_desde_archivo(ruta_csv):
 
     return nombre
 
-
 def extraer_tipo_fuente(ruta_csv):
 
     nombre = ruta_csv.name
@@ -31,7 +29,6 @@ def extraer_tipo_fuente(ruta_csv):
         return "results"
     else:
         return "desconocido"
-
 
 def cargar_todos_los_csv():
     archivos_rssdelta = sorted(SOURCE_DIR.glob("*_results_rssdelta.csv"))
@@ -57,7 +54,6 @@ def cargar_todos_los_csv():
 
     df_total = pd.concat(lista_dfs, ignore_index=True)
     return df_total
-
 
 def preparar_datos(df):
 
@@ -85,13 +81,25 @@ def preparar_datos(df):
 
     return df
 
-
 def guardar_figura(fig, nombre_archivo):
     PLOTS_DIR.mkdir(parents=True, exist_ok=True)
     ruta_salida = PLOTS_DIR / nombre_archivo
     fig.savefig(ruta_salida, dpi=300, bbox_inches="tight")
     plt.close(fig)
 
+def curva_teorica_comparativa(n_vals, n_ref, y_ref, tipo="nlogn"):
+    n_vals = np.asarray(n_vals, dtype=float)
+
+    if tipo == "nlogn":
+        base = n_vals * np.log2(n_vals)
+        ref = n_ref * np.log2(n_ref)
+    elif tipo == "n2":
+        base = n_vals ** 2
+        ref = n_ref ** 2
+    else:
+        raise ValueError("Tipo no soportado")
+
+    return (y_ref / ref) * base
 
 def graficar_tiempo_vs_tamano(df):
 
@@ -107,46 +115,128 @@ def graficar_tiempo_vs_tamano(df):
 
     tabla = df_mean.pivot(index="n", columns="algorithm", values="time_ms").sort_index()
 
+    # colores = {
+    #     "mergesort": "blue",
+    #     "quicksort": "orange",
+    #     "sort": "green"
+    # }
+
     for algoritmo in tabla.columns:
         ax.plot(
-            tabla[algoritmo],
             tabla.index,
+            tabla[algoritmo],
             marker="o",
+            # color=colores[algoritmo],
             label=algoritmo
         )
 
     ax.set_title("Tiempo de ejecución vs Tamaño de entrada")
-    ax.set_ylabel("Tamaño de entrada (n)")
-    ax.set_xlabel("Tiempo (ms)")
-    ax.set_xscale("log")
-    ax.set_xlim(0, 100000000)
-    ax.set_ylim(10,100000000)
+    ax.set_xlabel("Tamaño de entrada (n)")
+    ax.set_ylabel("Tiempo (ms)")
     ax.set_yscale("log")
+    ax.set_xscale("log")
     ax.legend()
     ax.grid(True, axis="y", alpha=0.4)
 
     guardar_figura(fig, "tiempo_vs_tamano.png")
 
-
-def graficar_memoria_vs_tamano(df):
-    """
-    Gráfico final de memoria: solo usa rssdelta y memoria válida.
-    """
+def graficar_curvas_teoricas(df, algoritmo, casos_teoricos, nombre_archivo):
     df_plot = df[df["source_type"] == "rssdelta"].copy()
+    df_plot = df_plot[df_plot["algorithm"] == algoritmo].copy()
 
-    # Aquí sí exigimos memoria válida
-    df_plot = df_plot.dropna(subset=["rss_delta_kb"])
-    df_plot = df_plot[df_plot["rss_delta_kb"] > 0]
-
-    fig, ax = plt.subplots(figsize=(12, 7))
+    if df_plot.empty:
+        print(f"No hay datos para {algoritmo}")
+        return
 
     df_mean = (
-        df_plot.groupby(["n", "algorithm"], as_index=False)["rss_delta_kb"]
+        df_plot.groupby("n", as_index=False)["time_ms"]
         .mean()
         .sort_values("n")
     )
 
-    tabla = df_mean.pivot(index="n", columns="algorithm", values="rss_delta_kb").sort_index()
+    n_vals = df_mean["n"].to_numpy(dtype=float)
+    y_vals = df_mean["time_ms"].to_numpy(dtype=float)
+
+    fig, ax = plt.subplots(figsize=(12, 7))
+
+    ax.plot(
+        n_vals,
+        y_vals,
+        marker="o",
+        linewidth=2,
+        label=f"{algoritmo} real"
+    )
+
+    n_ref = float(n_vals[-1])
+    y_ref = float(y_vals[-1])
+
+    for etiqueta, tipo, estilo in casos_teoricos:
+        y_teo = curva_teorica_comparativa(n_vals, n_ref, y_ref, tipo=tipo)
+        ax.plot(
+            n_vals,
+            y_teo,
+            linestyle=estilo,
+            linewidth=2,
+            label=etiqueta
+        )
+
+    ax.set_title(f"Tiempo de ejecución: {algoritmo}")
+    ax.set_xlabel("Tamaño de entrada (n)")
+    ax.set_ylabel("Tiempo (ms)")
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.legend()
+    ax.grid(True, axis="y", alpha=0.4)
+
+    guardar_figura(fig, nombre_archivo)
+
+def curvas_teoricas_helper(df):
+    graficar_curvas_teoricas(
+        df,
+        "mergesort",
+        [
+            ("mergesort teórico O(n log n)", "nlogn", "--")
+        ],
+        "tiempo_mergesort_teorico.png"
+    )
+
+    graficar_curvas_teoricas(
+        df,
+        "sort",
+        [
+            ("sort teórico O(n log n)", "nlogn", "--")
+        ],
+        "tiempo_sort_teorico.png"
+    )
+
+    graficar_curvas_teoricas(
+        df,
+        "quicksort",
+        [
+            ("quicksort teórico O(n log n)", "nlogn", "--"),
+            ("quicksort teórico O(n²)", "n2", ":")
+        ],
+        "tiempo_quicksort_teorico.png"
+    )
+
+def graficar_memoria_vs_tamano(df):
+
+    df_plot = df[df["source_type"] == "rssdelta"].copy()
+
+    df_plot = df_plot.dropna(subset=["rss_delta_kb"])
+    df_plot = df_plot[df_plot["rss_delta_kb"] > 0]
+
+    df_plot["rss_delta_mb"] = df_plot["rss_delta_kb"] / 1024
+
+    fig, ax = plt.subplots(figsize=(12, 7))
+
+    df_mean = (
+        df_plot.groupby(["n", "algorithm"], as_index=False)["rss_delta_mb"]
+        .mean()
+        .sort_values("n")
+    )
+
+    tabla = df_mean.pivot(index="n", columns="algorithm", values="rss_delta_mb").sort_index()
 
     for algoritmo in tabla.columns:
         ax.plot(
@@ -158,22 +248,90 @@ def graficar_memoria_vs_tamano(df):
 
     ax.set_title("Consumo de memoria vs Tamaño de entrada")
     ax.set_xlabel("Tamaño de entrada (n)")
-    ax.set_ylabel("Memoria RSS Delta (KB)")
+    ax.set_ylabel("Memoria RSS Delta (MB)")
     ax.set_xscale("log")
-    ax.set_yscale("log")
-    ax.set_ylim(0, 50000)
     ax.legend()
     ax.grid(True, axis="y", alpha=0.4)
 
     guardar_figura(fig, "memoria_vs_tamano.png")
 
+def graficar_memoria_vs_tamano_2(df):
+    df_plot = df[df["source_type"] == "rssdelta"].copy()
+
+    df_plot = df_plot.dropna(subset=["rss_delta_kb"])
+    df_plot = df_plot[df_plot["rss_delta_kb"] > 0]
+    df_plot = df_plot[df_plot["algorithm"].isin(["mergesort", "sort"])]
+
+    n_objetivo = [10, 10**3, 10**5, 10**7]
+    df_plot = df_plot[df_plot["n"].isin(n_objetivo)]
+
+    df_mean = (
+        df_plot.groupby(["n", "algorithm"], as_index=False)["rss_delta_kb"]
+        .mean()
+        .sort_values("n")
+    )
+
+    tabla = (
+        df_mean.pivot(index="n", columns="algorithm", values="rss_delta_kb")
+        .reindex(n_objetivo)
+    )
+
+    tabla = tabla.dropna(subset=["mergesort", "sort"])
+    tabla["diff_kb"] = tabla["mergesort"] - tabla["sort"]
+
+    fig, ax = plt.subplots(figsize=(12, 7))
+
+    etiquetas = ["10", "10³", "10⁵", "10⁷"][:len(tabla.index)]
+
+    ax.bar(etiquetas, tabla["diff_kb"])
+
+    ax.axhline(0, linewidth=1)
+    ax.set_title("Diferencia de memoria: mergesort - sort")
+    ax.set_xlabel("Cantidad de valores (n)")
+    ax.set_ylabel("Diferencia de memoria RSS Delta (KB)")
+    ax.grid(True, axis="y", alpha=0.4)
+    guardar_figura(fig, "memoria_vs_tamano_2.png")
+
+def graficar_memoria_vs_tamano_3(df):
+    df_plot = df[df["source_type"] == "rssdelta"].copy()
+
+    df_plot = df_plot.dropna(subset=["rss_delta_kb"])
+    df_plot = df_plot[df_plot["rss_delta_kb"] > 0]
+    df_plot = df_plot[df_plot["algorithm"].isin(["mergesort", "quicksort"])]
+
+    n_objetivo = [10, 10**3, 10**5, 10**7]
+    df_plot = df_plot[df_plot["n"].isin(n_objetivo)]
+
+    df_mean = (
+        df_plot.groupby(["n", "algorithm"], as_index=False)["rss_delta_kb"]
+        .mean()
+        .sort_values("n")
+    )
+
+    tabla = (
+        df_mean.pivot(index="n", columns="algorithm", values="rss_delta_kb")
+        .reindex(n_objetivo)
+    )
+
+    tabla = tabla.dropna(subset=["mergesort", "quicksort"])
+    tabla["diff_kb"] = tabla["mergesort"] - tabla["quicksort"]
+    tabla["diff_mb"] = tabla["diff_kb"] / 1024
+
+    fig, ax = plt.subplots(figsize=(12, 7))
+
+    etiquetas = ["10", "10³", "10⁵", "10⁷"][:len(tabla.index)]
+
+    ax.bar(etiquetas, tabla["diff_mb"])
+
+    ax.axhline(0, linewidth=1)
+    ax.set_title("Diferencia de memoria: mergesort - quicksort")
+    ax.set_xlabel("Cantidad de valores (n)")
+    ax.set_ylabel("Diferencia de memoria RSS Delta (MB)")
+    ax.grid(True, axis="y", alpha=0.4)
+    guardar_figura(fig, "memoria_vs_tamano_3.png")
 
 def graficar_comparacion_tiempo(df):
-    """
-    Compara tiempos entre ambas ejecuciones:
-    - results: línea punteada
-    - rssdelta: línea continua
-    """
+
     fig, ax = plt.subplots(figsize=(12, 7))
 
     df_mean = (
@@ -188,24 +346,32 @@ def graficar_comparacion_tiempo(df):
         datos_results = datos_alg[datos_alg["source_type"] == "results"]
         datos_rssdelta = datos_alg[datos_alg["source_type"] == "rssdelta"]
 
+        colores = {
+            "mergesort": "#1f77b4",
+            "quicksort": "#ff7f0e",
+            "sort": "#2ca02c"
+        }
+
         if not datos_results.empty:
             ax.plot(
-                datos_results["time_ms"],
                 datos_results["n"],
+                datos_results["time_ms"],
                 marker="o",
                 linestyle="--",
+                color=colores[algoritmo],
                 alpha=0.8,
-                label=f"{algoritmo} (results)"
+                label=f"{algoritmo} (primera ejecución)"
             )
 
         if not datos_rssdelta.empty:
             ax.plot(
-                datos_rssdelta["time_ms"],
                 datos_rssdelta["n"],
+                datos_rssdelta["time_ms"],
                 marker="o",
                 linestyle="-",
+                color=colores[algoritmo],
                 alpha=0.8,
-                label=f"{algoritmo} (rssdelta)"
+                label=f"{algoritmo} (segunda ejecución)"
             )
 
     ax.set_title("Comparación de tiempo entre ambas ejecuciones")
@@ -218,68 +384,19 @@ def graficar_comparacion_tiempo(df):
 
     guardar_figura(fig, "comparacion_tiempo.png")
 
-
-def resumen_consistencia_tiempo(df):
-    """
-    Resumen numérico opcional para ver qué tan parecidas son ambas ejecuciones.
-    """
-    df_mean = (
-        df.groupby(["n", "algorithm", "source_type"], as_index=False)["time_ms"]
-        .mean()
-    )
-
-    tabla = df_mean.pivot_table(
-        index=["n", "algorithm"],
-        columns="source_type",
-        values="time_ms"
-    ).reset_index()
-
-    if "results" in tabla.columns and "rssdelta" in tabla.columns:
-        tabla["diff_abs_ms"] = (tabla["rssdelta"] - tabla["results"]).abs()
-        tabla["diff_pct"] = (
-            tabla["diff_abs_ms"] / tabla[["rssdelta", "results"]].mean(axis=1)
-        ) * 100
-
-        print("\nResumen de consistencia de tiempo:")
-        print(tabla.head(20))
-
-        print("\nPromedio de diferencia porcentual por algoritmo:")
-        resumen = tabla.groupby("algorithm", as_index=False)["diff_pct"].mean()
-        print(resumen.sort_values("diff_pct"))
-    else:
-        print("\nNo se pudieron comparar ambas ejecuciones para el tiempo.")
-
-
-# -------------------------------------------------------------------
-# MAIN
-# -------------------------------------------------------------------
 def main():
     df = cargar_todos_los_csv()
     df = preparar_datos(df)
 
-    print("\nTipos de fuente encontrados:")
-    print(df["source_type"].value_counts())
-
-    print("\nAlgoritmo + fuente:")
-    print(
-        df.groupby(["algorithm", "source_type"])
-        .size()
-        .reset_index(name="filas")
-    )
-
     print("\nAlgoritmos encontrados:", sorted(df["algorithm"].unique()))
-    print("Tipos de fuente encontrados:", sorted(df["source_type"].unique()))
-    print("Total de filas cargadas:", len(df))
 
-    # Gráficos finales
     graficar_tiempo_vs_tamano(df)
     graficar_memoria_vs_tamano(df)
+    graficar_memoria_vs_tamano_2(df)
+    graficar_memoria_vs_tamano_3(df)
+    curvas_teoricas_helper(df)
 
-    # Comparación de tiempos
     graficar_comparacion_tiempo(df)
-
-    # Resumen opcional
-    resumen_consistencia_tiempo(df)
 
     print(f"\nGráficos guardados en: {PLOTS_DIR}")
 

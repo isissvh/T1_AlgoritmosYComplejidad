@@ -12,9 +12,7 @@ using namespace std;
 using namespace std::chrono;
 namespace fs = std::filesystem;
 
-// =========================================================================
-// DECLARACIÓN DE FUNCIONES EXTERNAS
-// =========================================================================
+
 void quickSort(vector<int>& arr, int low, int high);
 void mergeSort(vector<int>& arr, int left, int right);
 vector<int> sortArray(vector<int>& arr);

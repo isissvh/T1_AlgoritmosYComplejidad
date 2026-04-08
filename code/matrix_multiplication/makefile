@@ -10,11 +10,13 @@ OUTPUT_DIR = data/matrix_output
 MEASURE_DIR = data/measurements/multiplication
 ALGORITHMS = naive strassen
 
-# Regla principal
+PYTHON = python3
+PLOT_SCRIPT = scripts/plot_generator.py
+MATRIX_SCRIPT = scripts/matrix_multiplication.py
+
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
 
-# Compilación
 matrix_multiplication.o: matrix_multiplication.cpp
 	$(CXX) $(CXXFLAGS) -c matrix_multiplication.cpp
 
@@ -24,10 +26,16 @@ naive.o: $(ALGDIR)/naive.cpp
 strassen.o: $(ALGDIR)/strassen.cpp
 	$(CXX) $(CXXFLAGS) -c $(ALGDIR)/strassen.cpp
 
-# Ejecutar todos los inputs con todos los algoritmos
-# Se recorren solo los archivos *_1.txt para no repetir pares
-run: $(TARGET)
+matrix:
+	$(PYTHON) $(MATRIX_SCRIPT)
+
+run: matrix $(TARGET)
 	@mkdir -p $(MEASURE_DIR) $(OUTPUT_DIR)
+	@set -- $(INPUT_DIR)/*.txt; \
+	if [ "$$1" = "$(INPUT_DIR)/*.txt" ]; then \
+		echo "No se encontraron archivos de entrada en $(INPUT_DIR)"; \
+		exit 1; \
+	fi; \
 	@for alg in $(ALGORITHMS); do \
 		for file in $(INPUT_DIR)/*_1.txt; do \
 			base=$$(basename "$$file" _1.txt); \
@@ -42,7 +50,11 @@ run: $(TARGET)
 		done; \
 	done
 
-# Limpiar ejecutable y objetos
+plots:
+	$(PYTHON) $(PLOT_SCRIPT)
+
+all: matrix run plots
+
 clean:
 	rm -f $(OBJECTS) $(TARGET)
 
@@ -50,4 +62,4 @@ reset-results:
 	rm -f $(MEASURE_DIR)/*.csv
 	rm -f $(OUTPUT_DIR)/*.txt
 
-.PHONY: run clean reset-results
+.PHONY: matrix run plots all clean reset-results
