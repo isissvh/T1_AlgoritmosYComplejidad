@@ -12,7 +12,7 @@ ALGORITHMS = naive strassen
 
 PYTHON = python3
 PLOT_SCRIPT = scripts/plot_generator.py
-MATRIX_SCRIPT = scripts/matrix_multiplication.py
+MATRIX_SCRIPT = scripts/matrix_generator.py
 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
@@ -36,7 +36,7 @@ run: matrix $(TARGET)
 		echo "No se encontraron archivos de entrada en $(INPUT_DIR)"; \
 		exit 1; \
 	fi; \
-	@for alg in $(ALGORITHMS); do \
+	for alg in $(ALGORITHMS); do \
 		for file in $(INPUT_DIR)/*_1.txt; do \
 			base=$$(basename "$$file" _1.txt); \
 			n=$${base%%_*}; \
@@ -53,7 +53,7 @@ run: matrix $(TARGET)
 plots:
 	$(PYTHON) $(PLOT_SCRIPT)
 
-all: matrix run plots
+all: matrix plots
 
 clean:
 	rm -f $(OBJECTS) $(TARGET)
