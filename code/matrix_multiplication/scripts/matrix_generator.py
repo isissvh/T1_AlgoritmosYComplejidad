@@ -42,7 +42,7 @@ def guardar_matriz(matriz, nombre_archivo):
         for fila in matriz:
             f.write(' '.join(map(str, fila)) + '\n')
 
-def generar_y_guardar(n, t, d, m, carpeta="../data/matrix_input"):
+def generar_y_guardar(n, t, d, m, carpeta="data/matrix_input"):
     """
     Genera dos matrices y las guarda en archivos con nombres formateados.
     """
