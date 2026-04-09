@@ -3,17 +3,17 @@ Los experimentos fueron realizados en una máquina virtual con las siguientes ca
 \begin{itemize}
 \item \textbf{Hardware:} (máquina física)
     \begin{itemize}
-    \item Procesador:
-    \item Memoria Ram:
+    \item Procesador: Intel Core i5-10600K @ 4.10GHz
+    \item Memoria Ram: 16GB DDR4 2666MHz
     \item GPU: NVIDIA GeForce RTX 3060ti
-    \item Almacenamiento:
-    \end{itemize} 
+    \item Almacenamiento: 1TB SSD M.2 NVMe PCIe 3.0 
+    \end{itemize}
 
 \item \textbf{Detalles Máquina Virtual:}
     \begin{itemize}
-    \item Sistema Operativo: Ubuntu 24.04.1 LTS
+    \item Sistema Operativo: Ubuntu 24.04.4 LTS
     \item Compilador: g++ 13.3.0
-    \item Recursos Asignados a Máquina Virtual:
+    \item Recursos Asignados a Máquina Virtual: 12 procesadores lógicos (hilos) y 7.7 GiB de memoria RAM.
     \end{itemize} 
 
 \end{itemize} 
@@ -21,7 +21,9 @@ Los experimentos fueron realizados en una máquina virtual con las siguientes ca
 \textbf{Mediciones}
 
 \begin{enumerate}
-    \item \textbf{Tiempo de ejecución:} Se utilizó la biblioteca <chrono> de C++ para medir el tiempo transcurrido en ms durante la ejecución de cada algoritmo individualmente. Esto excluyendo operaciones de entrada/salida y compilación.
+    \item \textbf{Tiempo de ejecución:} Se utilizó la biblioteca <chrono> de C++ para medir el tiempo transcurrido en ms durante la ejecución de cada algoritmo individualmente.
+    Esto excluyendo operaciones de entrada/salida y compilación. Para la ejecución de los algoritmos de ordenamiento se realizaron 2 ejecuciones completas correspondientes al dataset
+    generado. Los resultados de estas ejecuciones mostraron conscistencia entre sí (\cref{fig:comparacionEjecuciones}), lo que indica que el rendimiento de los algoritmos es estable y predecible bajo las condiciones de prueba establecidas.
     \item \textbf{Consumo de memoria:} Se empleó getrusage() para medir el consumo máximo residente (RSS) durante la ejecución de cada algoritmo. En el caso particular de los algoritmos de ordenamiento,
     se midió en dos ejecuciones, inicialmente solo medía el valor máximo RSS alcanzado por el proceso completo, no necesariamente la memoria extra usada por el algoritmo, por lo que 
 se decidió medir el consumo de memoria antes y después de la ejecución del algoritmo, y restar ambos valores para obtener una estimación más precisa del consumo de memoria adicional.
@@ -29,6 +31,8 @@ se decidió medir el consumo de memoria antes y después de la ejecución del al
     información de depuración (-g). Esto garantiza que las comparaciones entre algoritmos sean justas y consistentes.
     \item \textbf{Casos de prueba:} Se utilizaron sólo los datasets generados por los scripts correspondientes a cada sección.
 \end{enumerate}
+
+
 
 \textbf{Datasets}
 
@@ -39,20 +43,3 @@ Estos scripts se encargaron de crear conjuntos de datos con dos tipos de dominio
 \texttt{diagonal} y \texttt{densa} dentro de los rangos de valores de $2^2$ hasta $2^{10}$. Estos datasets proporcionaron una 
 base sólida para evaluar el rendimiento de los algoritmos en diferentes escenarios y condiciones, permitiendo así obtener 
 conclusiones más robustas sobre su comportamiento.
-
-% "Ubuntu 24.04.1 LTS" SO
-% g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0 G++ VERSION
-% "lscpu" para el procesador
-% Filesystem      Size  Used Avail Use% Mounted on
-% /dev/sdc       1007G   16G  941G   2% /         ALMACENAMIENTO
-
-% Detalles de la máquina virtual:
-% • Sistema operativo: Ubuntu 24.04.1 LTS
-% • Compilador utilizado: g++ 13.3.0
-% • Recursos disponibles: 12 núcleos de CPU, 3.7 GiB de memoria RAM y 1007 GB de almacenamiento
-% DESDE
-% lsb_release -a
-% g++ --version
-% nproc
-% free -h
-% df -h /

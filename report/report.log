@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.4)  8 APR 2026 18:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.26)  9 APR 2026 01:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/isidora/algoco/T1_AlgoritmosYComplejidad/report/report.tex
-(/home/isidora/algoco/T1_AlgoritmosYComplejidad/report/report.tex
+**/home/isido/algoco/T1_AlgoritmosYComplejidad/report/report.tex
+(/home/isido/algoco/T1_AlgoritmosYComplejidad/report/report.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -1352,7 +1352,7 @@ File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
 File: tikzlibraryfit.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 61.
+Package hyperref Info: Option `colorlinks' set `true' on input line 62.
 ) (./author.tex)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
@@ -1526,7 +1526,7 @@ LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1.
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ))
 Overfull \hbox (21.09683pt too wide) in paragraph at lines 49--50
-[] \T1/futs/m/it/10 En el pre-sen-te in-for-me se rea-li-za un aná-li-sis ex-pe-ri-men-tal de al-go-rit-mos de or-de-na-mien-to (\T1/cmtt/m/it/10 MergeSort\T1/futs/m/it/10 [[][]1[][]],
+[] \T1/futs/m/it/10 En el pre-sen-te in-for-me se rea-li-za un aná-li-sis ex-pe-ri-men-tal de al-go-rit-mos de or-de-na-mien-to (\T1/cmtt/m/it/10 MergeSort\T1/futs/m/it/10 [[][]2[][]],
  []
 
 (./sections/experiment_intro.tex
@@ -1537,29 +1537,141 @@ File: ts1futs.fd 2003/09/14 Fontinst v1.801 font definitions for TS1/futs.
 
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 38.
+(Font)              scaled to size 10.07397pt on input line 42.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 38.
+(Font)              scaled to size 7.63599pt on input line 42.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 38.
+(Font)              scaled to size 5.51999pt on input line 42.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 38.
+(Font)              scaled to size 10.07397pt on input line 42.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 38.
+(Font)              scaled to size 7.63599pt on input line 42.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 38.
+(Font)              scaled to size 5.51999pt on input line 42.
 ) (./sections/experiment_results.tex [2]
-<../code/sorting/data/plots/tiempo_quicksort_teorico.png, id=43, 730.1679pt x 450.0012pt>
+<../code/sorting/data/plots/tiempo_vs_tamano.png, id=52, 730.1679pt x 450.0012pt>
+File: ../code/sorting/data/plots/tiempo_vs_tamano.png Graphic file (type png)
+<use ../code/sorting/data/plots/tiempo_vs_tamano.png>
+Package pdftex.def Info: ../code/sorting/data/plots/tiempo_vs_tamano.png  used on input line 29.
+(pdftex.def)             Requested size: 341.43306pt x 210.42255pt.
+ [3 <../code/sorting/data/plots/tiempo_vs_tamano.png>]
+<../code/sorting/data/plots/memoria_vs_tamano.png, id=65, 719.8092pt x 449.5194pt>
+File: ../code/sorting/data/plots/memoria_vs_tamano.png Graphic file (type png)
+<use ../code/sorting/data/plots/memoria_vs_tamano.png>
+Package pdftex.def Info: ../code/sorting/data/plots/memoria_vs_tamano.png  used on input line 61.
+(pdftex.def)             Requested size: 341.43306pt x 213.22897pt.
+ [4 <../code/sorting/data/plots/memoria_vs_tamano.png>]
+<../code/matrix_multiplication/data/plots/tiempo_vs_tamano.png, id=78, 730.1679pt x 449.7603pt>
+File: ../code/matrix_multiplication/data/plots/tiempo_vs_tamano.png Graphic file (type png)
+<use ../code/matrix_multiplication/data/plots/tiempo_vs_tamano.png>
+Package pdftex.def Info: ../code/matrix_multiplication/data/plots/tiempo_vs_tamano.png  used on input line 92.
+(pdftex.def)             Requested size: 341.43306pt x 210.3099pt.
+ [5 <../code/matrix_multiplication/data/plots/tiempo_vs_tamano.png>]
+<../code/matrix_multiplication/data/plots/memoria_vs_tamano.png, id=89, 719.8092pt x 449.2785pt>
+File: ../code/matrix_multiplication/data/plots/memoria_vs_tamano.png Graphic file (type png)
+<use ../code/matrix_multiplication/data/plots/memoria_vs_tamano.png>
+Package pdftex.def Info: ../code/matrix_multiplication/data/plots/memoria_vs_tamano.png  used on input line 115.
+(pdftex.def)             Requested size: 341.43306pt x 213.11472pt.
+) (./sections/conclusions.tex) [6 <../code/matrix_multiplication/data/plots/memoria_vs_tamano.png>] [7] (./sections/appendix1.tex
+<../code/sorting/data/plots/comparacion_tiempo.png, id=103, 730.1679pt x 450.0012pt>
+File: ../code/sorting/data/plots/comparacion_tiempo.png Graphic file (type png)
+<use ../code/sorting/data/plots/comparacion_tiempo.png>
+Package pdftex.def Info: ../code/sorting/data/plots/comparacion_tiempo.png  used on input line 67.
+(pdftex.def)             Requested size: 226.57297pt x 139.63625pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 68.
+See the caption package documentation for explanation.
+
+<../code/sorting/data/plots/tiempo_quicksort_teorico.png, id=104, 730.1679pt x 450.0012pt>
 File: ../code/sorting/data/plots/tiempo_quicksort_teorico.png Graphic file (type png)
 <use ../code/sorting/data/plots/tiempo_quicksort_teorico.png>
-Package pdftex.def Info: ../code/sorting/data/plots/tiempo_quicksort_teorico.png  used on input line 16.
-(pdftex.def)             Requested size: 330.42041pt x 203.63849pt.
-<../code/sorting/data/plots/tiempo_mergesort_teorico.png, id=45, 730.4088pt x 450.0012pt>
+Package pdftex.def Info: ../code/sorting/data/plots/tiempo_quicksort_teorico.png  used on input line 74.
+(pdftex.def)             Requested size: 226.57297pt x 139.63625pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 75.
+See the caption package documentation for explanation.
+
+<../code/sorting/data/plots/tiempo_mergesort_teorico.png, id=105, 730.4088pt x 450.0012pt>
 File: ../code/sorting/data/plots/tiempo_mergesort_teorico.png Graphic file (type png)
 <use ../code/sorting/data/plots/tiempo_mergesort_teorico.png>
-Package pdftex.def Info: ../code/sorting/data/plots/tiempo_mergesort_teorico.png  used on input line 27.
-(pdftex.def)             Requested size: 330.42041pt x 203.56982pt.
-) (./sections/conclusions.tex [3 <../code/sorting/data/plots/tiempo_quicksort_teorico.png> <../code/sorting/data/plots/tiempo_mergesort_teorico.png>]) [4] (./report.aux
+Package pdftex.def Info: ../code/sorting/data/plots/tiempo_mergesort_teorico.png  used on input line 85.
+(pdftex.def)             Requested size: 226.57297pt x 139.58818pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 86.
+See the caption package documentation for explanation.
+
+<../code/sorting/data/plots/tiempo_sort_teorico.png, id=106, 730.4088pt x 450.0012pt>
+File: ../code/sorting/data/plots/tiempo_sort_teorico.png Graphic file (type png)
+<use ../code/sorting/data/plots/tiempo_sort_teorico.png>
+Package pdftex.def Info: ../code/sorting/data/plots/tiempo_sort_teorico.png  used on input line 92.
+(pdftex.def)             Requested size: 226.57297pt x 139.58818pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 93.
+See the caption package documentation for explanation.
+
+<../code/sorting/data/plots/memoria_vs_tamano_2.png, id=107, 719.8092pt x 449.2785pt>
+File: ../code/sorting/data/plots/memoria_vs_tamano_2.png Graphic file (type png)
+<use ../code/sorting/data/plots/memoria_vs_tamano_2.png>
+Package pdftex.def Info: ../code/sorting/data/plots/memoria_vs_tamano_2.png  used on input line 103.
+(pdftex.def)             Requested size: 226.57297pt x 141.41377pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 104.
+See the caption package documentation for explanation.
+
+<../code/sorting/data/plots/memoria_vs_tamano_3.png, id=108, 719.8092pt x 449.2785pt>
+File: ../code/sorting/data/plots/memoria_vs_tamano_3.png Graphic file (type png)
+<use ../code/sorting/data/plots/memoria_vs_tamano_3.png>
+Package pdftex.def Info: ../code/sorting/data/plots/memoria_vs_tamano_3.png  used on input line 110.
+(pdftex.def)             Requested size: 226.57297pt x 141.41377pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 111.
+See the caption package documentation for explanation.
+
+<../code/matrix_multiplication/data/plots/memoria_vs_tamano2.png, id=109, 719.8092pt x 449.2785pt>
+File: ../code/matrix_multiplication/data/plots/memoria_vs_tamano2.png Graphic file (type png)
+<use ../code/matrix_multiplication/data/plots/memoria_vs_tamano2.png>
+Package pdftex.def Info: ../code/matrix_multiplication/data/plots/memoria_vs_tamano2.png  used on input line 121.
+(pdftex.def)             Requested size: 226.57297pt x 141.41377pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 122.
+See the caption package documentation for explanation.
+
+<../code/matrix_multiplication/data/plots/tiempo_naive_teorico.png, id=110, 730.1679pt x 449.7603pt>
+File: ../code/matrix_multiplication/data/plots/tiempo_naive_teorico.png Graphic file (type png)
+<use ../code/matrix_multiplication/data/plots/tiempo_naive_teorico.png>
+Package pdftex.def Info: ../code/matrix_multiplication/data/plots/tiempo_naive_teorico.png  used on input line 128.
+(pdftex.def)             Requested size: 226.57297pt x 139.5615pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 129.
+See the caption package documentation for explanation.
+
+[8 <../code/sorting/data/plots/comparacion_tiempo.png> <../code/sorting/data/plots/tiempo_quicksort_teorico.png> <../code/sorting/data/plots/tiempo_mergesort_teorico.png> <../code/sorting/data/plots/tiempo_sort_teorico.png> <../code/sorting/data/plots/memoria_vs_tamano_2.png> <../code/sorting/data/plots/memoria_vs_tamano_3.png>]
+<../code/matrix_multiplication/data/plots/tiempo_strassen_teorico.png, id=122, 724.6272pt x 449.7603pt>
+File: ../code/matrix_multiplication/data/plots/tiempo_strassen_teorico.png Graphic file (type png)
+<use ../code/matrix_multiplication/data/plots/tiempo_strassen_teorico.png>
+Package pdftex.def Info: ../code/matrix_multiplication/data/plots/tiempo_strassen_teorico.png  used on input line 139.
+(pdftex.def)             Requested size: 226.57297pt x 140.62523pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 140.
+See the caption package documentation for explanation.
+
+)
+Overfull \hbox (23.43553pt too wide) in paragraph at lines 66--66
+[]\T1/futs/m/n/10.95 V. Stras-sen. ^^S  Gaus-sian eli-mi-na-tion is not op-ti-mal^^T. En: \T1/futs/m/it/10.95 Nu-me-ris-che Mathe-ma-tik \T1/futs/m/n/10.95 13.4 (1969), págs. 354[]356. 
+ []
+
+[9 <../code/matrix_multiplication/data/plots/memoria_vs_tamano2.png> <../code/matrix_multiplication/data/plots/tiempo_naive_teorico.png> <../code/matrix_multiplication/data/plots/tiempo_strassen_teorico.png>] (./report.aux
 LaTeX Info: Redefining \sptext on input line 20.
 LaTeX Info: Redefining \. on input line 20.
 LaTeX Info: Redefining \% on input line 20.
@@ -1570,24 +1682,24 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 9F014D8548A379B0748383F91CE3555E;406.
+(rerunfilecheck)             Checksum: 46F2B738563B575BB0535B709F5C654B;492.
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 55123 strings out of 474222
- 1249458 string characters out of 5748734
- 2188788 words of memory out of 5000000
- 76534 multiletter control sequences out of 15000+600000
- 657032 words of font info for 130 fonts, out of 8000000 for 9000
+ 55271 strings out of 474222
+ 1255743 string characters out of 5748733
+ 2191091 words of memory out of 5000000
+ 76654 multiletter control sequences out of 15000+600000
+ 658418 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 107i,11n,110p,7223b,2132s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 107i,12n,110p,7221b,2136s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on report.pdf (4 pages, 402575 bytes).
+Output written on report.pdf (9 pages, 1860535 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
- 47 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 174 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 110 words of extra memory for PDF output out of 10000 (max. 10000000)
 

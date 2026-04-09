@@ -1,5 +1,5 @@
 
-\textbf{Algoritmos de ordenamiento}
+\textbf{Algoritmos de ordenamiento - Tiempo de ejecución}
 
 Los algoritmos de ordenamiento muestran patrones de rendimiento diferentes a las expectativas teóricas, 
 revelando la complejidad de implementar algoritmos eficientes en entornos reales.
@@ -10,34 +10,116 @@ revelando la complejidad de implementar algoritmos eficientes en entornos reales
     adecuadamente (por ejemplo, si el arreglo ya está ordenado), el tiempo de ejecución puede degradarse a $O(n^2)$. Dado que la 
     implementación utilizada selecciona un pivote aleatorio pero ciertos casos pueden no ser tan aleatorios, se observa que el 
     rendimiento de Quicksort puede variar significativamente, especialmente con entradas grandes o patrones reiterativos de datos.
-
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth]{../code/sorting/data/plots/tiempo_quicksort_teorico.png}
-        \caption{Rendimiento de Quicksort comparado a rendimientos teóricos.}
-    \end{figure}
+    (\cref{fig:rendimientoQuicksort})
 
     \item \textbf{Mergesort:} En la ejecución de este algoritmo se dieron resultados consistentes con el tiempo de ejecución 
-    teórico de $O(n \log n)$, independientemente de la naturaleza de los datos de entrada. Esto se debe a que Mergesort siempre 
-    divide el arreglo en partes iguales y combina los resultados de manera eficiente, lo que garantiza un rendimiento estable y 
-    de esa manera se cataloga como el algoritmo más robustos frente a variaciones en las características de los datos.ç
+    teórico de $O(n \log n)$, A diferencia de algoritmos sensibles a la estructura de la entrada, Mergesort garantiza un rendimiento invariable gracias a su estricto enfoque de 
+    dividir y conquistar; al particionar siempre el arreglo en mitades exactas y ejecutar una fase de combinación eficiente, evita por completo la degradación a casos más complejos.
+    (\cref{fig:rendimientoMergesort} )
+
+    \item \textbf{Sort ( std::sort en C++ ):} La función \texttt{std::sort} de C++ se basa en un algoritmo híbrido llamado Introsort, que combina \texttt{Quicksort}, \texttt{Heapsort} 
+    y \texttt{Mergesort}. 
+    En la práctica, std::sort mostró un rendimiento consistente con su tiempo de ejecución teórico de $O(n \log n)$ en el mejor, promedio y peor caso. Esto se debe a que 
+    Introsort adapta su estrategia de ordenamiento según las características de los datos, lo que le permite mantener un rendimiento eficiente independiente de la naturaleza 
+    de los datos de entrada. 
+    (\cref{fig:rendimientoSort})
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\textwidth]{../code/sorting/data/plots/tiempo_mergesort_teorico.png}
-        \caption{Rendimiento de Mergesort comparado a rendimientos teóricos.}
+        \includegraphics[width=12cm]{../code/sorting/data/plots/tiempo_vs_tamano.png}
+        \caption{Comparación de tiempos de ejecución entre algoritmos de ordenamiento.}
+        \label{fig:comparacionAlgoritmosOrd}
     \end{figure}
 
 \end{itemize}
 
+\textbf{Algoritmos de ordenamiento - Análisis de memoria}
 
-% **Algoritmos de Ordenamiento**
+En cuanto al consumo de memoria, los algoritmos de ordenamiento presentan diferencias significativas en su uso de recursos, lo que se refleja en las mediciones realizadas. Como ya 
+se mencionó, para obtener una estimación más precisa del consumo de memoria adicional, se midió el consumo de memoria antes y después de la ejecución del algoritmo, y se restaron 
+ambos valores. Particularmente para cada algoritmo se observaron los siguientes patrones:
 
-% * **Quicksort:** Su tiempo en el mejor caso y en el caso promedio es $O(n \log n)$. Sin embargo, en el peor caso (por ejemplo, si el arreglo ya está ordenado y no se elige un pivote aleatorio), su tiempo decae a $O(n^2)$.
-% * **sort (`std::sort` en C++):** En las versiones modernas de C++, se garantiza un tiempo de ejecución de $O(n \log n)$ para el mejor caso, caso promedio y peor caso. Esto se logra usando un algoritmo híbrido llamado Introsort.
-% * **Mergesort:** Su tiempo de ejecución es siempre constante en $O(n \log n)$ sin importar si es el mejor, el promedio o el peor caso.
+\begin{itemize}
+    \item \textbf{Quicksort:} El bajo y estable consumo de memoria registrado para Quicksort confirma su eficiencia espacial teórica de $O(\log n)$. 
+    Este comportamiento fundamentalmente por su diseño de ordenamiento in-place, el cual realiza los intercambios directamente sobre el vector original y no requiere 
+    de la asignación dinámica de arreglos auxiliares. A su vez, se realizó una modificación a la implementación de Quicksort para acotar la profundidad de recursión, 
+    lo que contribuyó a mantener un consumo de memoria constante incluso en casos de entradas grandes. 
 
-% **Algoritmos de Multiplicación de Matrices**
+    \item \textbf{Mergesort:} Durante la evaluación empírica del algoritmo Mergesort, se registró un aumento significativo en el peak de memoria residente (RSS). 
+    Este comportamiento experimental es consistente con la base teórica. El procedimiento estándar no opera de manera in-place, 
+    ya que requiere la asignación explícita de arreglos auxiliares para almacenar temporalmente los elementos durante la etapa de fusión. Esto genera un requerimiento de memoria 
+    adicional estrictamente proporcional a la cantidad de datos, resultando en una complejidad espacial de $O(n)$. \cite{Cormen2009}
 
-% * **Naive (Ingenuo):** El método clásico de fuerza bruta (usando tres bucles anidados) tiene un tiempo de ejecución de $O(n^3)$.
-% * **Strassen:** Este algoritmo reduce la cantidad de multiplicaciones necesarias, logrando un tiempo de ejecución de $O(n^{\log_2 7})$, lo que equivale aproximadamente a $O(n^{2.81})$. Solo es más rápido que el ingenuo en la práctica cuando las matrices son muy grandes.
+    \item \textbf{Sort ( std::sort en C++ ):} Utilizando el algoritmo ya implementado, las mediciones iniciales de std::sort arrojaron un consumo de memoria atípicamente alto. 
+    El análisis detallado del entorno de pruebas muestra que el incremento no es a raíz del algoritmo, sino un artefacto de la implementación del wrapper utilizado en C++. 
+    Al definir la función invocadora con un retorno por valor sobre un contenedor std::vector pasado por referencia, el estándar del lenguaje exige la ejecución 
+    del constructor de copia (Copy Constructor) para retornar el resultado. Este proceso fuerza la creación temporal de un bloque de memoria para duplicar los $n$ 
+    elementos, elevando el peak de memoria a $O(n)$ en la reasignación, lectura que es capturada por la función del sistema operativo (getrusage()). \cite{iso_cpp_2020}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=12cm]{../code/sorting/data/plots/memoria_vs_tamano.png}
+        \caption{Comparación de uso de memoria entre algoritmos de ordenamiento.}
+    \end{figure}
+
+    Esta gran diferencia en el consumo de memoria entre los algoritmos se evidencia claramente, la diferencia significativa entre \texttt{Quicksort} y los otros dos algoritmos son coherentes 
+    con las expectativas en base a las implementaciones utilizadas, siendo \texttt{Mergesort} y \texttt{Sort} los que presentan un consumo de memoria adicional considerablemente mayor, los que 
+    a su vez tienen una diferencia de uso de memoria despreciable, lo que se puede atribuir a la naturaleza de las implementaciones y a la forma en que gestionan la memoria, como 
+    se explicó anteriormente.
+    (\cref{MergeVsSort})
+
+\end{itemize}
+
+\textbf{Multiplicación de Matrices - Tiempo de ejecución}
+
+Las ejecuciones de las multiplicaciones de matrices presentaron un comportamiento que se alinea con las expectativas teóricas, las cuales son:
+
+\begin{itemize}
+    \item \textbf{Algoritmo Naive:} Este es el método clásico utilizando tres bucles anidados, el cual tiene un tiempo de ejecución teórico 
+    de $O(n^3)$. Durante los experimentos este algoritmo muestra un crecimiento esperado evidente; para matrices de tamaño moderado a pequeño, su simplicidad 
+    y las nulas llamadas recursivas permiten que se ejecute rápidamente, pero su rendimiento decae drásticamente frente a entradas de gran magnitud.
+    (\cref{fig:rendimientoNaive})
+
+    \item \textbf{Algoritmo de Strassen:} Este algoritmo utiliza el paradigma de dividir y conquistar para reducir la cantidad de multiplicaciones necesarias en cada paso, 
+    logrando un tiempo de ejecución teórico optimizado de $O(n^{\log_2 7})$, lo que equivale aproximadamente a $O(n^{2.81})$ \cite{Strassen1969}. Sin embargo, en la práctica solo es más rápido que el 
+    algoritmo cuando las matrices son muy grandes. Esto se debe a que la reducción en multiplicaciones exige un aumento considerable en las sumas y restas de sub-matrices 
+    temporales, generando una sobrecarga constante (overhead) que consume el tiempo de ejecución en entradas pequeñas. Dentro de la implementación se pudo modificar el rango de 
+    tamaño de matriz donde se aplicaba Strassen o Naive como auxiliar, pero dado el fin de este análisis se utilizó sólo Strassen.
+    (\cref{fig:rendimientoStrassen})
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=12cm]{../code/matrix_multiplication/data/plots/tiempo_vs_tamano.png}
+        \caption{Comparación de tiempo de ejecución entre algoritmos de multiplicación de matrices.}
+    \end{figure}
+
+\end{itemize}
+
+\textbf{Multiplicación de Matrices - Análisis de memoria}
+
+El consumo de memoria en la multiplicación de matrices evidencia claramente el \textit{trade-off} (intercambio) entre la optimización del tiempo de ejecución y el uso de recursos 
+espaciales del sistema.
+
+\begin{itemize}
+    \item \textbf{Algoritmo Naive:} La implementación tradicional destaca por su alta eficiencia espacial. Al realizar las operaciones y acumulaciones iterativas leyendo 
+    directamente las estructuras de las matrices originales y escribiendo en la matriz de resultados, no requiere la creación de estructuras de datos auxiliares. Su consumo de 
+    memoria dinámica extra es prácticamente nulo, manteniendo un \textit{peak} de memoria (RSS) estable y no creciente con una eficiencia espacial de $O(1)$.
+
+    \item \textbf{Algoritmo de Strassen:} Strassen presenta un consumo de memoria significativamente mayor al operar recursivamente subdividiendo las matrices. 
+    El procedimiento exige la asignación explícita de numerosas sub-matrices en cada nivel de la recursión para almacenar adiciones y 
+    sustracciones intermedias. Este proceso eleva rápidamente el \textit{peak} de memoria, generando una eficiencia espacial adicional de $O(n^2)$,
+    lo que lo hace considerablemente más exigente para el sistema operativo en comparación al otro algoritmo.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=12cm]{../code/matrix_multiplication/data/plots/memoria_vs_tamano.png}
+        \caption{Comparación de uso de memoria entre algoritmos de multiplicación de matrices.}
+    \end{figure}
+
+    Como se observa en la figura, para tamaños inferiores a $2^6$ no se aprecia un consumo de memoria graficado para \texttt{Strassen}, lo que se explica por su uso aún muy 
+    reducido de memoria en esos casos. Sin embargo, a medida que aumenta el tamaño de las matrices, su consumo de memoria se vuelve cada vez más evidente, tal como era esperable. 
+    Por otro lado, en \texttt{Naive} recién a partir de tamaños cercanos a $2^8$ se comienza a notar un incremento en el consumo de memoria, mientras que para tamaños menores 
+    este resulta prácticamente nulo. De esta forma, se aprecia que \texttt{Naive} requiere una cantidad de memoria considerablemente menor que \texttt{Strassen}, lo cual es 
+    coherente con la naturaleza de ambos algoritmos y con la forma en que fueron implementados.
+    (\cref{StrassenVsNaive})
+\end{itemize}

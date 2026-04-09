@@ -19,6 +19,46 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{Cormen2009}{book}{}
+      \name{author}{4}{}{%
+        {{hash=835b8c52757d98c15859b416316d9820}{%
+           family={Cormen},
+           familyi={C\bibinitperiod},
+           given={Thomas\bibnamedelima H.},
+           giveni={T\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=a389dea91a76366c4b4af5f52a928a76}{%
+           family={Leiserson},
+           familyi={L\bibinitperiod},
+           given={Charles\bibnamedelima E.},
+           giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=3a964821f97ee17f8bb285bc61c52899}{%
+           family={Rivest},
+           familyi={R\bibinitperiod},
+           given={Ronald\bibnamedelima L.},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=bc78426660400760f77758aec45e71a8}{%
+           family={Stein},
+           familyi={S\bibinitperiod},
+           given={Clifford},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{c251cdfd036d9474565c517e73c19c5d}
+      \strng{fullhash}{10f004e08c7c03d98be0da1231a869ce}
+      \strng{bibnamehash}{c251cdfd036d9474565c517e73c19c5d}
+      \strng{authorbibnamehash}{c251cdfd036d9474565c517e73c19c5d}
+      \strng{authornamehash}{c251cdfd036d9474565c517e73c19c5d}
+      \strng{authorfullhash}{10f004e08c7c03d98be0da1231a869ce}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{Introduction to Algorithms}
+      \field{year}{2009}
+    \endentry
     \entry{Merge}{misc}{}
       \name{author}{1}{}{%
         {{hash=e035fc87801e463836c4b83f23ce07c7}{%
@@ -93,6 +133,55 @@
       \field{howpublished}{\url{https://www.geeksforgeeks.org/dsa/strassens-matrix-multiplication/}}
       \field{title}{Strassen's Matrix Multiplication}
       \field{year}{2025}
+    \endentry
+    \entry{iso_cpp_2020}{manual}{}
+      \name{author}{1}{}{%
+        {{hash=0828a8408614177181026ea908d5594a}{%
+           family={{ISO/IEC}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {International Organization for Standardization}%
+      }
+      \strng{namehash}{0828a8408614177181026ea908d5594a}
+      \strng{fullhash}{0828a8408614177181026ea908d5594a}
+      \strng{bibnamehash}{0828a8408614177181026ea908d5594a}
+      \strng{authorbibnamehash}{0828a8408614177181026ea908d5594a}
+      \strng{authornamehash}{0828a8408614177181026ea908d5594a}
+      \strng{authorfullhash}{0828a8408614177181026ea908d5594a}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Cláusula 11.4.4.2}
+      \field{title}{ISO/IEC 14882:2020: Programming languages --- C++}
+      \field{year}{2020}
+    \endentry
+    \entry{Strassen1969}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c67d4845b860f9077e6c7af50a058632}{%
+           family={Strassen},
+           familyi={S\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{c67d4845b860f9077e6c7af50a058632}
+      \strng{fullhash}{c67d4845b860f9077e6c7af50a058632}
+      \strng{bibnamehash}{c67d4845b860f9077e6c7af50a058632}
+      \strng{authorbibnamehash}{c67d4845b860f9077e6c7af50a058632}
+      \strng{authornamehash}{c67d4845b860f9077e6c7af50a058632}
+      \strng{authorfullhash}{c67d4845b860f9077e6c7af50a058632}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Numerische Mathematik}
+      \field{number}{4}
+      \field{title}{Gaussian elimination is not optimal}
+      \field{volume}{13}
+      \field{year}{1969}
+      \field{pages}{354\bibrangedash 356}
+      \range{pages}{3}
     \endentry
   \enddatalist
 \endrefsection

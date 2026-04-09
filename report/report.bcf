@@ -2364,6 +2364,9 @@
     <bcf:citekey order="1" intorder="1">Merge</bcf:citekey>
     <bcf:citekey order="2" intorder="1">Quick</bcf:citekey>
     <bcf:citekey order="3" intorder="1">Strassen</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">Cormen2009</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">iso_cpp_2020</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">Strassen1969</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
