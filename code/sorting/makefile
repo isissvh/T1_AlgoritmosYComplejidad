@@ -12,7 +12,7 @@ ALGORITHMS = quicksort mergesort sort
 
 PYTHON = python3
 PLOT_SCRIPT = scripts/plot_generator.py
-ARRAY_SCRIPT = scripts/generate_arrays.py
+ARRAY_SCRIPT = scripts/array_generator.py
 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
@@ -39,7 +39,7 @@ run: array $(TARGET)
 		echo "No se encontraron archivos de entrada en $(INPUT_DIR)"; \
 		exit 1; \
 	fi; \
-	@for alg in $(ALGORITHMS); do \
+	for alg in $(ALGORITHMS); do \
 		for file in $(INPUT_DIR)/*.txt; do \
 			base=$$(basename "$$file" .txt); \
 			n=$${base%%_*}; \
