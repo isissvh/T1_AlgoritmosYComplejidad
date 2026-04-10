@@ -11,7 +11,7 @@ Para cada caso se implementaron algoritmos en C++, se generaron datasets mediant
 
 La entrega se realiza vía **aula.usm.cl** en formato `.zip`.
 
-Dado al tamaño de la entrega, se adjuntaron solo casos de prueba claves para evidenciar los resultados finales.
+Dado al tamaño de la entrega, todos los casos de uso se encuentran en mi [repositorio](https://github.com/isissvh/T1_AlgoritmosYComplejidad)
 
 ## Multiplicación de matrices
 
